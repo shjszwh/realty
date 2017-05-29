@@ -3,3 +3,4 @@ composer.json
 composer.lock
 docker-compose.yml
 /.idea
+.DS_Store
