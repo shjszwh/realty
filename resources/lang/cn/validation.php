@@ -1,5 +1,6 @@
 <?php
 
+//TODO::验证信息中文化
 return [
 
     /*
