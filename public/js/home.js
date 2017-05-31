@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 83);
+/******/ 	return __webpack_require__(__webpack_require__.s = 84);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -58500,7 +58500,8 @@ function applyToTag (styleElement, obj) {
 
 
 /***/ }),
-/* 67 */
+/* 67 */,
+/* 68 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -58513,8 +58514,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_element_ui___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_element_ui__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_element_ui_lib_locale_lang_zh_CN__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_element_ui_lib_locale_lang_zh_CN___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_element_ui_lib_locale_lang_zh_CN__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_realty_nav_vue__ = __webpack_require__(76);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_realty_nav_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_realty_nav_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_realty_carousel_vue__ = __webpack_require__(87);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_realty_carousel_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_realty_carousel_vue__);
+/**
+ * Created by haoye on 2017/6/1.
+ */
 
 
 
@@ -58522,295 +58526,26 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_2_element_ui___default.a, { locale: __WEBPACK_IMPORTED_MODULE_3_element_ui_lib_locale_lang_zh_CN___default.a });
-
 var realty = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
-    el: '#realty',
+    el: '#container',
     components: {
-        RealtyNav: __WEBPACK_IMPORTED_MODULE_4__components_realty_nav_vue___default.a
+        RealtyCarousel: __WEBPACK_IMPORTED_MODULE_4__components_realty_carousel_vue___default.a
     }
 });
 
 /***/ }),
-/* 68 */,
 /* 69 */,
 /* 70 */,
-/* 71 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    data: function data() {
-        return {};
-    }
-});
-
-/***/ }),
-/* 72 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__realty_logo_vue__ = __webpack_require__(75);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__realty_logo_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__realty_logo_vue__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    data: function data() {
-        return {};
-    },
-    components: {
-        Logo: __WEBPACK_IMPORTED_MODULE_0__realty_logo_vue___default.a
-    }
-});
-
-/***/ }),
-/* 73 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(64)();
-exports.push([module.i, "\n.realty-logo{\n    float: left;\n    display: inline-block;\n    vertical-align: middle;\n}\n.realty-logo img{\n    height:60px;\n}\n", ""]);
-
-/***/ }),
-/* 74 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(64)();
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
-
-/***/ }),
-/* 75 */
-/***/ (function(module, exports, __webpack_require__) {
-
-
-/* styles */
-__webpack_require__(79)
-
-var Component = __webpack_require__(65)(
-  /* script */
-  __webpack_require__(71),
-  /* template */
-  __webpack_require__(77),
-  /* scopeId */
-  null,
-  /* cssModules */
-  null
-)
-Component.options.__file = "/web/realty/resources/assets/js/components/realty-logo.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] realty-logo.vue: functional components are not supported with templates, they should use render functions.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-15434de4", Component.options)
-  } else {
-    hotAPI.reload("data-v-15434de4", Component.options)
-  }
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 76 */
-/***/ (function(module, exports, __webpack_require__) {
-
-
-/* styles */
-__webpack_require__(80)
-
-var Component = __webpack_require__(65)(
-  /* script */
-  __webpack_require__(72),
-  /* template */
-  __webpack_require__(78),
-  /* scopeId */
-  null,
-  /* cssModules */
-  null
-)
-Component.options.__file = "/web/realty/resources/assets/js/components/realty-nav.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] realty-nav.vue: functional components are not supported with templates, they should use render functions.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-21a222e0", Component.options)
-  } else {
-    hotAPI.reload("data-v-21a222e0", Component.options)
-  }
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 77 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _vm._m(0)
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('a', {
-    staticClass: "realty-logo",
-    attrs: {
-      "id": "logo",
-      "href": "/"
-    }
-  }, [_c('img', {
-    attrs: {
-      "src": "/images/logo.png",
-      "alt": ""
-    }
-  })])
-}]}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-15434de4", module.exports)
-  }
-}
-
-/***/ }),
-/* 78 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('el-menu', {
-    staticClass: "el-menu-demo",
-    attrs: {
-      "default-active": "1",
-      "mode": "horizontal"
-    }
-  }, [_c('logo'), _vm._v(" "), _c('el-menu-item', {
-    attrs: {
-      "index": "1"
-    }
-  }, [_c('a', {
-    attrs: {
-      "href": "/"
-    }
-  }, [_c('i', {
-    staticClass: "el-icon-star-off"
-  }), _vm._v("首页")])]), _vm._v(" "), _c('el-menu-item', {
-    attrs: {
-      "index": "1"
-    }
-  }, [_c('a', {
-    attrs: {
-      "href": "/tags"
-    }
-  }, [_c('i', {
-    staticClass: "el-icon-date"
-  }), _vm._v("标签")])]), _vm._v(" "), _c('el-menu-item', {
-    attrs: {
-      "index": "1"
-    }
-  }, [_c('a', {
-    attrs: {
-      "href": "/articles"
-    }
-  }, [_c('i', {
-    staticClass: "el-icon-document"
-  }), _vm._v("文章")])]), _vm._v(" "), _c('el-menu-item', {
-    attrs: {
-      "index": "1"
-    }
-  }, [_c('a', {
-    attrs: {
-      "href": "/celebrities"
-    }
-  }, [_vm._v("人物")])])], 1)
-},staticRenderFns: []}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-21a222e0", module.exports)
-  }
-}
-
-/***/ }),
-/* 79 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(73);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(66)("3a6d2c72", content, false);
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-15434de4\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./realty-logo.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-15434de4\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./realty-logo.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 80 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(74);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(66)("44840b74", content, false);
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-21a222e0\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./realty-nav.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-21a222e0\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./realty-nav.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
+/* 71 */,
+/* 72 */,
+/* 73 */,
+/* 74 */,
+/* 75 */,
+/* 76 */,
+/* 77 */,
+/* 78 */,
+/* 79 */,
+/* 80 */,
 /* 81 */
 /***/ (function(module, exports) {
 
@@ -58845,11 +58580,149 @@ module.exports = function listToStyles (parentId, list) {
 
 /***/ }),
 /* 82 */,
-/* 83 */
+/* 83 */,
+/* 84 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(67);
+module.exports = __webpack_require__(68);
 
+
+/***/ }),
+/* 85 */,
+/* 86 */,
+/* 87 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+/* styles */
+__webpack_require__(90)
+
+var Component = __webpack_require__(65)(
+  /* script */
+  __webpack_require__(91),
+  /* template */
+  __webpack_require__(89),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/web/realty/resources/assets/js/components/realty-carousel.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] realty-carousel.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-28a2f4c3", Component.options)
+  } else {
+    hotAPI.reload("data-v-28a2f4c3", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 88 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(64)();
+exports.push([module.i, "\n.realty-carousel {\n    height: 500px;\n    width: 100%;\n    background-position:center center;\n}\n", ""]);
+
+/***/ }),
+/* 89 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "block"
+  }, [_c('el-carousel', {
+    attrs: {
+      "height": "500px"
+    }
+  }, _vm._l((_vm.items), function(item) {
+    return _c('el-carousel-item', {
+      key: item.title
+    }, [_c('div', {
+      staticClass: "realty-carousel",
+      style: ('background: url(' + item.img + ');')
+    })])
+  }))], 1)
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-28a2f4c3", module.exports)
+  }
+}
+
+/***/ }),
+/* 90 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(88);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(66)("c2bde036", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-28a2f4c3\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./realty-carousel.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-28a2f4c3\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./realty-carousel.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 91 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            items: [{
+                title: '标题1',
+                img: '/images/banner1.png',
+                con: '内容'
+            }, {
+                title: '标题2',
+                img: '/images/banner2.png',
+                con: '内容'
+            }, {
+                title: '标题3',
+                img: '/images/banner3.png',
+                con: '内容'
+            }]
+        };
+    }
+});
 
 /***/ })
 /******/ ]);

@@ -11,6 +11,5 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//顶层
+Route::resource('/', 'HomeController');

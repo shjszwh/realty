@@ -1,14 +1,16 @@
+/**
+ * Created by haoye on 2017/6/1.
+ */
 import Vue from 'vue'
 import Jquery from 'jquery'
 import ElementUI from 'element-ui'
 import locale from 'element-ui/lib/locale/lang/zh-CN'
-import RealtyNav from './components/realty-nav.vue'
+import RealtyCarousel from './components/realty-carousel.vue'
 
-Vue.use(ElementUI, { locale })
-
+Vue.use(ElementUI, {locale})
 const realty = new Vue({
-    el: '#realty',
+    el: '#container',
     components: {
-        RealtyNav
-    },
+        RealtyCarousel
+    }
 });
