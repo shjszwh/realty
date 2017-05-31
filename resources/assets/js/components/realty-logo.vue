@@ -6,6 +6,7 @@
 
 <script>
     export default {
+        name: 'RealtyLogo',
         data:function(){
             return {};
         }

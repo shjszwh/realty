@@ -7,9 +7,16 @@
 </head>
 <body>
 <div id="realty">
-    <realty-nav></realty-nav>
+    <div id="realtyNav">
+        <realty-nav></realty-nav>
+    </div>
+
     <div id="container">
         @yield('content')
+    </div>
+
+    <div id="realtyBoot">
+        <realty-boot></realty-boot>
     </div>
 </div>
 <script src="{{  mix('js/app.js')  }}"></script>

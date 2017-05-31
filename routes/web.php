@@ -13,3 +13,7 @@
 
 //顶层
 Route::resource('/', 'HomeController');
+Route::resource('tags', 'TagsController');
+Route::resource('articles', 'ArticlesController');
+Route::resource('celebrities', 'CelebritiesController');
+

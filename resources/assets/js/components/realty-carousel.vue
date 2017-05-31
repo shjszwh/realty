@@ -1,6 +1,6 @@
 <template>
     <div class="block">
-        <el-carousel height="500px">
+        <el-carousel height="300px">
             <el-carousel-item v-for="item in items" :key="item.title">
                 <div class="realty-carousel" :style="'background: url('+item.img+');'"></div>
             </el-carousel-item>
@@ -9,6 +9,7 @@
 </template>
 <script>
     export default {
+        name: 'RealtyCarousel',
         data: function () {
             return {
                 items: [
@@ -33,9 +34,7 @@
     }
 </script>
 <style>
-    .realty-carousel {
-        height: 500px;
-        width: 100%;
-        background-position:center center;
-    }
+.realty-carousel{
+    width:100%;
+}
 </style>
