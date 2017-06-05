@@ -10,7 +10,6 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-dd($_SERVER);
 //顶层
 Route::group([], function () {
     Route::resource('/', 'HomeController', ['only' => ['index']]);
