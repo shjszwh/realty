@@ -19,6 +19,9 @@
         <realty-boot></realty-boot>
     </div>
 </div>
+<script>
+
+</script>
 <script src="{{  mix('js/app.js')  }}"></script>
 @yield('js')
 </body>

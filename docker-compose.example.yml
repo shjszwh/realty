@@ -15,7 +15,7 @@ services:
       - .:/var/www/html
 
   phpfpm:
-    image: hub.c.163.com/deepthink/php-fpm:20170530054041271
+    image: hub.c.163.com/deepthink/php-fpm:20170602022859811
     container_name: realty-php
     env_file: .env
     ports:
