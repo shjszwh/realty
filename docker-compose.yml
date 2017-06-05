@@ -4,7 +4,7 @@ services:
 
   nginx:
     image: hub.c.163.com/library/nginx:1.13
-    container_name: biz-nginx
+    container_name: realty-nginx
     env_file: .env
     links:
       - phpfpm
@@ -15,7 +15,7 @@ services:
       - .:/var/www/html
 
   phpfpm:
-    image: hub.c.163.com/deepthink/php-fpm:20170530054041271
+    image: hub.c.163.com/deepthink/php-fpm:20170602022859811
     container_name: realty-php
     env_file: .env
     ports:
@@ -27,13 +27,14 @@ services:
       - .:/var/www/html
 
   mysql:
-    image: hub.c.163.com/library/mysql:5.7
+    image: hub.c.163.com/library/mysql:5.6
     container_name: realty-mysql
     env_file: .env
     ports:
       - 3306:3306
     volumes:
-      - ~/data/realty/mysql:/var/lib/mysql
+      - /tmp/data/realty/mysql:/var/lib/mysql
+      - ./database/initdb:/docker-entrypoint-initdb.d
 
   redis:
     image: hub.c.163.com/library/redis:3.2.6
@@ -42,4 +43,4 @@ services:
     ports:
       - 6379:6379
     volumes:
-      - ~/data/realty/redis:/data
+      - /tmp/data/realty/redis:/data
