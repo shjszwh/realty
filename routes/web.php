@@ -10,10 +10,12 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+dd($_SERVER);
 //顶层
-Route::resource('/', 'HomeController');
-Route::resource('tags', 'TagsController');
-Route::resource('articles', 'ArticlesController');
-Route::resource('celebrities', 'CelebritiesController');
+Route::group([], function () {
+    Route::resource('/', 'HomeController', ['only' => ['index']]);
+    Route::resource('tags', 'TagsController');
+    Route::resource('articles', 'ArticlesController');
+    Route::resource('celebrities', 'CelebritiesController');
 
+});
