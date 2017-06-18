@@ -16,5 +16,8 @@ Route::group([], function () {
     Route::resource('tags', 'TagsController');
     Route::resource('articles', 'ArticlesController');
     Route::resource('celebrities', 'CelebritiesController');
+});
+
+Route::group(['middleware' => 'auth'],function (){
 
 });
