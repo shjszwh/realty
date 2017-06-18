@@ -1,10 +1,9 @@
 version: '2'
 
 services:
-
   nginx:
     image: hub.c.163.com/library/nginx:1.13
-    container_name: biz-nginx
+    container_name: realty-nginx
     env_file: .env
     links:
       - phpfpm
@@ -15,7 +14,7 @@ services:
       - .:/var/www/html
 
   phpfpm:
-    image: hub.c.163.com/deepthink/php-fpm:20170530054041271
+    image: hub.c.163.com/deepthink/phpfpm:20170618112914209
     container_name: realty-php
     env_file: .env
     ports:
