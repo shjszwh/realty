@@ -3,7 +3,7 @@
         <el-tag type="primary" class="realty-links-tag" v-for="(item,index) in tags" :key="index">
             <a :href="item.url">{{item.name}}</a>
         </el-tag>
-        <p class="boot-text">LARAVEL IS A TRADEMARK OF TAYLOR OTWELL. COPYRIGHT © TAYLOR OTWELL.</p>
+        <p class="boot-text">打造中国最优秀的采购知识分享平台。</p>
     </div>
 </template>
 

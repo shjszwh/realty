@@ -58688,13 +58688,50 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'RealtyNav',
     data: function data() {
-        return {};
+        return {
+            auth_guest: STATUS.auth_guest,
+            login_url: URL.login,
+            register_url: URL.register,
+            logout_url: URL.logout,
+            csr_token: USER.csrf_token,
+            user_name: USER.name
+        };
     },
+    methods: {
+        logout: function logout() {
+            event.preventDefault();
+            document.getElementById('logout-form').submit();
+        }
+    },
+
     components: {
         Logo: __WEBPACK_IMPORTED_MODULE_0__realty_logo_vue___default.a
     }
@@ -58719,7 +58756,7 @@ exports.push([module.i, "\n.realty-boot {\n    width: 100%;\n    background: #f6
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(14)();
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n.el-menu--horizontal .el-menu-item.pull-right:{\n    float: right;\n}\n", ""]);
 
 /***/ }),
 /* 81 */,
@@ -58850,7 +58887,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }, [_vm._v(_vm._s(item.name))])])
   }), _vm._v(" "), _c('p', {
     staticClass: "boot-text"
-  }, [_vm._v("LARAVEL IS A TRADEMARK OF TAYLOR OTWELL. COPYRIGHT © TAYLOR OTWELL.")])], 2)
+  }, [_vm._v("打造中国最优秀的采购知识分享平台。")])], 2)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -58909,7 +58946,58 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "href": "/celebrities"
     }
-  }, [_vm._v("人物")])])], 1)
+  }, [_vm._v("人物")])]), _vm._v(" "), (_vm.auth_guest) ? _c('li', {
+    staticClass: "el-menu-item pull-right"
+  }, [_c('a', {
+    attrs: {
+      "href": _vm.login_url
+    }
+  }, [_vm._v("登录")])]) : _vm._e(), _vm._v(" "), (_vm.auth_guest) ? _c('li', {
+    staticClass: "el-menu-item pull-right"
+  }, [_c('a', {
+    attrs: {
+      "href": _vm.register_url
+    }
+  }, [_vm._v("注册")])]) : _vm._e(), _vm._v(" "), (!_vm.auth_guest) ? _c('li', {
+    staticClass: "el-menu-item pull-right"
+  }, [_c('a', [_vm._v("欢迎" + _vm._s(_vm.user_name))])]) : _vm._e(), _vm._v(" "), (!_vm.auth_guest) ? _c('li', {
+    staticClass: "el-menu-item pull-right"
+  }, [_c('a', {
+    on: {
+      "click": function($event) {
+        _vm.logout(_vm.event)
+      }
+    }
+  }, [_vm._v("安全退出")]), _vm._v(" "), _c('form', {
+    staticStyle: {
+      "display": "none"
+    },
+    attrs: {
+      "id": "logout-form",
+      "action": _vm.logout_url,
+      "method": "POST"
+    }
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.csr_token),
+      expression: "csr_token"
+    }],
+    attrs: {
+      "type": "hidden",
+      "name": "_token"
+    },
+    domProps: {
+      "value": (_vm.csr_token)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.csr_token = $event.target.value
+      }
+    }
+  })])]) : _vm._e()], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {

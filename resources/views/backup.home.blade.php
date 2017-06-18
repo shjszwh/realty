@@ -12,11 +12,11 @@
 @endsection
 
 @section('css')
-    <style>
-        .realty-carousel {
-            height: 500px;
-            width: 100%;
-            background-position:center center;
-        }
-    </style>
+<style>
+    .realty-carousel {
+        height: 500px;
+        width: 100%;
+        background-position:center center;
+    }
+</style>
 @endsection
