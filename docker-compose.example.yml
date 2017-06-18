@@ -3,7 +3,7 @@ version: '2'
 services:
   nginx:
     image: hub.c.163.com/library/nginx:1.13
-    container_name: biz-nginx
+    container_name: realty-nginx
     env_file: .env
     links:
       - phpfpm
