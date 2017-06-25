@@ -19,7 +19,16 @@ var scripts = [
     'app.js',
     'home.js',
     'login.js',
-    'register.js'
+    'register.js',
+    'nav.js',
+	'my.articles.create.js',
+	'my.articles.index.js',
+	'my.articles.show.js',
+	'my.dirs.index.js',
+	'my.dirs.show.js',
+	'my.tags.create.js',
+	'my.tags.index.js',
+	'my.tags.show.js',
 ];
 
 scsses.forEach(function(filename) {
@@ -27,7 +36,10 @@ scsses.forEach(function(filename) {
 });
 
 scripts.forEach(function(filename) {
-    mix.js('resources/assets/js/' + filename, 'public/js');
+	mix.js('resources/assets/js/' + filename, 'public/js');
+});
+scripts.forEach(function(filename) {
+	mix.js('resources/assets/js/my/' + filename, 'public/js/my');
 });
 
 mix.copy('resources/assets/images', 'public/images', false);
@@ -39,6 +51,7 @@ mix.browserSync({
         'resources/assets/sass/*',
         'resources/assets/images/*',
         'resources/assets/js/*',
+	    'resources/assets/js/my/*',
         'resources/assets/js/components/*',
         'resources/views/*',
         'resources/views/*/*'

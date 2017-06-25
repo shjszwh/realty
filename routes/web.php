@@ -12,14 +12,19 @@
 */
 //顶层
 Route::group([], function () {
-	Route::resource('/', 'HomeController', ['only' => ['index']]);
-	Route::resource('tags', 'TagsController');
+	Route::get('/', 'HomeController@index')->name('home');
+	Route::get('/home', 'HomeController@index');
+	Route::resource('tags', 'TagsController', ['only' => ['index', 'show']]);
 	Route::resource('articles', 'ArticlesController', ['only' => ['index', 'show']]);
-	Route::resource('celebrities', 'CelebritiesController');
+	Route::resource('celebrities', 'CelebritiesController', ['only' => ['index', 'show']]);
 });
 
-Route::group(['middleware' => 'auth'], function () {
-
+Route::group(['middleware' => 'auth', 'namespace' => 'My', 'prefix' => 'my'], function () {
+	Route::get('/', 'ProfileController@edit')->name('profile');
+	Route::post('/', 'ProfileController@update')->name('profileApi');
+	Route::resource('my-tags', 'TagsController');
+	Route::resource('my-dirs', 'DirsController');
+	Route::resource('my-articles', 'ArticlesController');
+	Route::resource('my-celebrities', 'CelebritiesController');
 });
 Auth::routes();
-Route::get('/home', 'HomeController@index')->name('home');
