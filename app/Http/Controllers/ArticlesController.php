@@ -66,7 +66,7 @@ class ArticlesController extends Controller
 		$articleJson = $article->toJSON();
 		$tags = $article->tags->toJSON();
 		$author = $article->user->toJSON();
-		$content = $article->content->toJSONs;
+		$content = $article->content->content;
 		return view('articles.show',
 			['article' => $articleJson, 'tags' => $tags, 'author' => $author, 'content' => $content]);
 	}

@@ -54,7 +54,7 @@
 
 			</div>
 			<div class="text item">
-				@{!! article !!}
+				{!! $content !!}
 			</div>
 		</el-card>
 	</el-row>
@@ -66,7 +66,7 @@
 		var article = {!! $article !!};
 		var tags ={!! $tags !!};
 		var author = {!! $author !!};
-		var content = {!! $content !!}
+		var content;
 		console.log(article, tags, author);
 	</script>
 	<script src="{{  mix('js/articles.show.js')  }}"></script>
