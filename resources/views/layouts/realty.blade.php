@@ -52,15 +52,20 @@
 				show: '{{ route('profile') }}',
 				update: '{{ route('profileApi') }}',
 			},
-			myArticles: {
+			articles: {
 				index: '{{ route('my-articles.index') }}',
 				create: '{{ route('my-articles.create') }}',
 				store: '{{ route('my-articles.store') }}'
 			},
-			myDir: {
+			dirs: {
 				index: '{{ route('my-dirs.index') }}',
 				create: '{{ route('my-dirs.create') }}',
 				store: '{{ route('my-dirs.store') }}'
+			},
+			tags: {
+				index: '{{ route('my-tags.index') }}',
+				create: '{{ route('my-tags.create') }}',
+				store: '{{ route('my-tags.store') }}'
 			}
 		},
 		login: "{{ route('login') }}",

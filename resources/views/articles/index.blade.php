@@ -1,9 +1,9 @@
-@extends('layouts.my')
+@extends('layouts.realty')
 
-@section('title', '我的文章')
+@section('title', '文章')
 
 @section('content')
-	<articles-index :items="items" :articles="articles"></articles-index>
+	<articles-index :items="items" :articles="articles" :is-public="true"></articles-index>
 @endsection
 
 @section('js')
@@ -12,7 +12,7 @@
 		var items ={!! $items !!};
 		console.log(articles, items);
 	</script>
-	<script src="{{  mix('js/my.articles.index.js')  }}"></script>
+	<script src="{{  mix('js/articles.index.js')  }}"></script>
 @endsection
 
 @section('css')

@@ -126,10 +126,15 @@
 		methods: {
 			onSubmit: function () {
 				this.form._token = USER.csrf_token,
-					this.$http.post(this.url.my.articles.store, this.form).then(function (a, b, c) {
-						console.log(a, b, c);
+					this.$http.post(this.url.my.articles.store, this.form).then(function (response) {
+						if (response.body && response.body.status == 'success') {
+							this.$message(response.body.message);
+							setTimeout(function () {
+								location.href = URL.my.articles.index;
+							}, 2000);
+						}
 					}, function (a, b, c) {
-						console.log(a, b, c);
+						this.$message('保存失败');
 					});
 				console.log(this.form);
 			},

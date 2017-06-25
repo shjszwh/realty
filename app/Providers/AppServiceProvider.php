@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\Article;
 use App\Models\Dir;
+use App\Models\DirContent;
 use App\Models\Tag;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\ServiceProvider;
@@ -17,11 +18,6 @@ class AppServiceProvider extends ServiceProvider
 	 */
 	public function boot()
 	{
-		Relation::morphMap([
-			'tags' => Tag::class,
-			'dirs' => Dir::class,
-			'articles' => Article::class,
-		]);
 		//
 	}
 

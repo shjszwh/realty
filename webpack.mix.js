@@ -21,6 +21,8 @@ var scripts = [
     'login.js',
     'register.js',
     'nav.js',
+	'articles.index.js',
+	'articles.show.js',
 	'my.articles.create.js',
 	'my.articles.index.js',
 	'my.articles.show.js',

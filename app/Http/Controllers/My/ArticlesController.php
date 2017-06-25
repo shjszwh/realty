@@ -17,12 +17,27 @@ class ArticlesController extends Controller
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
-	public function index(Request $request)
+	public function index(Article $articleModel, Request $request)
 	{
 		$user = \Auth::user();
-		$articles = $user->articles()->paginate(10)->toArray();
+		$articles = $user->articles()->orderBy('id', 'desc')->paginate(30);
+		$items = [];
 
-		return view('my.articles.index', ['articles' => $articles]);
+		foreach ($articles as $article) {
+			$arrayArticle = $article->toArray();
+			$arrayArticle['tags'] = $article->tags->toArray();
+			$arrayArticle['dirs'] = [];
+			$arrayArticle['showUrl'] = route('my-articles.show',$article->id);
+			$arrayArticle['editUrl'] = route('my-articles.edit',$article->id);
+			if (count($article->dirs)) {
+				foreach ($article->dirs as $dir) {
+					$arrayArticle['dirs'][] = $dir->dir;
+				}
+			}
+			$items[] = $arrayArticle;
+		}
+//		dd($articles);
+		return view('my.articles.index', ['articles' => $articles->toJSON(), 'items' => json_encode($items, true)]);
 		//
 	}
 
@@ -46,7 +61,7 @@ class ArticlesController extends Controller
 	{
 		$all = $request->all();
 		$status = false;
-		DB::transaction(function ($data) use ($all,&$status) {
+		DB::transaction(function ($data) use ($all, &$status) {
 			$user = \Auth::user();
 			$article = Article::create(['user_id' => $user->id, 'title' => $all['title']]);
 			$tags = [];
@@ -56,18 +71,18 @@ class ArticlesController extends Controller
 					'title' => $tag,
 				]);
 			}
-			$dirs = [];
-			foreach ($all['dirs'] as $dir) {
-				$dirs[] = new DirContent(['dir_id' => $dir]);
-			}
-			$article->dirs()->saveMany($dirs);
+//			$dirs = [];
+//			foreach ($all['dirs'] as $dir) {
+//				$dirs[] = new DirContent(['dir_id' => $dir]);
+//			}
+//			$article->dirs()->saveMany($dirs);
 			$article->tags()->saveMany($tags);
 			$article->content()->create(['content' => $all['content']]);
 			$status = true;
 		});
-		if($status){
+		if ($status) {
 			return response(['message' => '提交成功', 'status' => 'success'], Response::HTTP_OK);
-		}else{
+		} else {
 			return response(['message' => '保存失败', 'status' => 'success'], Response::HTTP_INTERNAL_SERVER_ERROR);
 		}
 	}

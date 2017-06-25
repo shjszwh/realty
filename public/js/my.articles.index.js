@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 126);
+/******/ 	return __webpack_require__(__webpack_require__.s = 130);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -49856,66 +49856,12 @@ module.exports = function listToStyles (parentId, list) {
 
 
 /***/ }),
-/* 69 */,
-/* 70 */,
-/* 71 */,
-/* 72 */,
-/* 73 */,
-/* 74 */,
-/* 75 */
+/* 69 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_resource__ = __webpack_require__(63);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_element_ui__ = __webpack_require__(50);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_element_ui___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_element_ui__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_element_ui_lib_locale_lang_zh_CN__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_element_ui_lib_locale_lang_zh_CN___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_element_ui_lib_locale_lang_zh_CN__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_articles_index_vue__ = __webpack_require__(101);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_articles_index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_articles_index_vue__);
-/**
- * Created by haoye on 2017/6/1.
- */
-
-
-
-
-
-
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_resource__["a" /* default */]);
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_2_element_ui___default.a, { locale: __WEBPACK_IMPORTED_MODULE_3_element_ui_lib_locale_lang_zh_CN___default.a });
-var my = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
-	el: '#my',
-	data: function data() {
-		return {
-			url: URL
-		};
-	},
-	components: {
-		ArticlesIndex: __WEBPACK_IMPORTED_MODULE_4__components_articles_index_vue___default.a
-	}
-});
-
-/***/ }),
-/* 76 */,
-/* 77 */,
-/* 78 */,
-/* 79 */,
-/* 80 */,
-/* 81 */,
-/* 82 */,
-/* 83 */,
-/* 84 */,
-/* 85 */,
-/* 86 */,
-/* 87 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
 //
 //
 //
@@ -50000,51 +49946,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	name: 'ArticlesIndex',
+	props: ['items', 'articles', 'isPublic'],
 	data: function data() {
+		console.log(this.isPublic);
 		return {
 			url: URL,
-			count: 122,
-			articles: [{
-				date: '2016-05-02',
-				name: '王小虎',
-				title: '上海市普陀区金沙江路 1518 弄',
-				tags: [{ number: 12, name: '文章' }, { number: 12, name: '文章2' }, { number: 12, name: '目录' }],
-				dirs: ['中文', '目录1', '随笔'],
-				dirUrl: '/my/my-dirs/1',
-				editUrl: 'my/my-articles/1/edit',
-				deleteUrl: '/my/my-articles/1',
-				showUrl: '/my/my-articles/1'
-			}, {
-				date: '2016-05-04',
-				name: '王小虎',
-				title: '上海市普陀区金沙江路 1517 弄',
-				tags: [{ number: 12, name: '文章' }, { number: 12, name: '文章2' }, { number: 12, name: '目录' }],
-				dirs: ['中文', '目录1', '随笔'],
-				dirUrl: '/my/my-dirs/1',
-				editUrl: 'my/my-articles/1/edit',
-				deleteUrl: '/my/my-articles/1',
-				showUrl: '/my/my-articles/1'
-			}, {
-				date: '2016-05-01',
-				name: '王小虎',
-				title: '上海市普陀区金沙江路 1519 弄',
-				tags: [{ number: 12, name: '文章' }, { number: 12, name: '文章2' }, { number: 12, name: '目录' }],
-				dirs: ['中文', '目录1', '随笔'],
-				dirUrl: '/my/my-dirs/1',
-				editUrl: 'my/my-articles/1/edit',
-				deleteUrl: '/my/my-articles/1',
-				showUrl: '/my/my-articles/1'
-			}, {
-				date: '2016-05-03',
-				name: '王小虎',
-				title: '上海市普陀区金沙江路 1516 弄',
-				tags: [{ number: 12, name: '文章' }, { number: 12, name: '文章2' }, { number: 12, name: '目录' }],
-				dirs: ['中文', '目录1', '随笔'],
-				dirUrl: '/my/my-dirs/1',
-				editUrl: 'my/my-articles/1/edit',
-				deleteUrl: '/my/my-articles/1',
-				showUrl: '/my/my-articles/1'
-			}]
+			count: 122
 		};
 	},
 
@@ -50066,37 +49973,26 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 88 */,
-/* 89 */,
-/* 90 */,
-/* 91 */,
-/* 92 */,
-/* 93 */
+/* 70 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(65)();
 exports.push([module.i, "\n.el-tag.item {\n\tmargin: 2px;\n}\n", ""]);
 
 /***/ }),
-/* 94 */,
-/* 95 */,
-/* 96 */,
-/* 97 */,
-/* 98 */,
-/* 99 */,
-/* 100 */,
-/* 101 */
+/* 71 */,
+/* 72 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
 /* styles */
-__webpack_require__(113)
+__webpack_require__(74)
 
 var Component = __webpack_require__(66)(
   /* script */
-  __webpack_require__(87),
+  __webpack_require__(69),
   /* template */
-  __webpack_require__(106),
+  __webpack_require__(73),
   /* scopeId */
   null,
   /* cssModules */
@@ -50123,21 +50019,17 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 102 */,
-/* 103 */,
-/* 104 */,
-/* 105 */,
-/* 106 */
+/* 73 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('el-row', [(_vm.articles.length) ? _c('el-col', {
+  return _c('el-row', [(_vm.items.length) ? _c('el-col', {
     attrs: {
       "span": 24
     }
   }, [_c('el-card', {
     staticClass: "box-card"
-  }, [_c('div', {
+  }, [(!_vm.isPublic) ? _c('div', {
     staticClass: "clearfix el-row",
     slot: "header"
   }, [_c('el-breadcrumb', {
@@ -50152,7 +50044,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "href": _vm.url.my.articles.index
     }
-  }, [_vm._v("我的文章")])])], 1)], 1), _vm._v(" "), _c('div', {
+  }, [_vm._v("我的文章")])])], 1)], 1) : _vm._e(), _vm._v(" "), (!_vm.isPublic) ? _c('div', {
     staticClass: "text item el-row",
     staticStyle: {
       "margin-bottom": "10px"
@@ -50165,7 +50057,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticStyle: {
       "line-height": "36px"
     }
-  }, [_vm._v("您一共贡献了" + _vm._s(_vm.count) + "篇文章")])]), _vm._v(" "), _c('el-col', {
+  }, [_vm._v("您一共贡献了" + _vm._s(_vm.articles.total) + "篇文章")])]), _vm._v(" "), _c('el-col', {
     staticStyle: {
       "text-align": "right"
     },
@@ -50177,18 +50069,18 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "href": _vm.url.my.articles.create
     }
-  }, [_vm._v("再写一篇")])])], 1)], 1), _vm._v(" "), _c('div', {
+  }, [_vm._v("再写一篇")])])], 1)], 1) : _vm._e(), _vm._v(" "), _c('div', {
     staticClass: "text item"
   }, [_c('el-table', {
     staticStyle: {
       "width": "100%"
     },
     attrs: {
-      "data": _vm.articles
+      "data": _vm.items
     }
   }, [_c('el-table-column', {
     attrs: {
-      "prop": "date",
+      "prop": "created_at",
       "label": "创作日期"
     }
   }), _vm._v(" "), _c('el-table-column', {
@@ -50198,8 +50090,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }), _vm._v(" "), _c('el-table-column', {
     attrs: {
-      "prop": "tag",
-      "label": "标签TOP3",
+      "prop": "tags",
+      "label": "标签",
       "filters": [{
         text: '文章',
         value: '文章'
@@ -50218,7 +50110,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
               "type": tag === '文章' ? 'primary' : 'success',
               "close-transition": ""
             }
-          }, [_vm._v(_vm._s(tag.name) + "(" + _vm._s(tag.number) + ")\n\t\t\t\t\t\t\t")])
+          }, [_vm._v(_vm._s(tag.title) + "\n\t\t\t\t\t\t\t")])
         })
       }
     }])
@@ -50232,9 +50124,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         return [_c('a', {
           staticClass: "el-button el-button--text",
           attrs: {
-            "href": scope.row.dirUrl
+            "href": scope.row.dirs.path
           }
-        }, [_vm._v(_vm._s(scope.row.dirs.join('/')))])]
+        }, [_vm._v(_vm._s(scope.row.dirs.path))])]
       }
     }])
   }), _vm._v(" "), _c('el-table-column', {
@@ -50249,20 +50141,20 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           attrs: {
             "href": scope.row.showUrl
           }
-        }, [_vm._v("查看")]), _vm._v(" "), _c('a', {
+        }, [_vm._v("查看")]), _vm._v(" "), (!_vm.isPublic) ? _c('a', {
           staticClass: "el-button el-button--text",
           attrs: {
             "href": scope.row.editUrl
           }
-        }, [_vm._v("编辑")]), _vm._v(" "), _c('a', {
+        }, [_vm._v("编辑")]) : _vm._e(), _vm._v(" "), (!_vm.isPublic) ? _c('a', {
           staticClass: "el-button el-button--text",
           attrs: {
             "href": scope.row.deleteUrl
           }
-        }, [_vm._v("删除")])]
+        }, [_vm._v("删除")]) : _vm._e()]
       }
     }])
-  })], 1)], 1)])], 1) : _vm._e(), _vm._v(" "), (!_vm.articles.length) ? _c('el-col', {
+  })], 1)], 1)])], 1) : _vm._e(), _vm._v(" "), (!_vm.items.length) ? _c('el-col', {
     attrs: {
       "span": 24
     }
@@ -50312,19 +50204,13 @@ if (false) {
 }
 
 /***/ }),
-/* 107 */,
-/* 108 */,
-/* 109 */,
-/* 110 */,
-/* 111 */,
-/* 112 */,
-/* 113 */
+/* 74 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(93);
+var content = __webpack_require__(70);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -50344,6 +50230,84 @@ if(false) {
 }
 
 /***/ }),
+/* 75 */,
+/* 76 */,
+/* 77 */,
+/* 78 */,
+/* 79 */,
+/* 80 */,
+/* 81 */,
+/* 82 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_resource__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_element_ui__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_element_ui___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_element_ui__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_element_ui_lib_locale_lang_zh_CN__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_element_ui_lib_locale_lang_zh_CN___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_element_ui_lib_locale_lang_zh_CN__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_articles_index_vue__ = __webpack_require__(72);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_articles_index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_articles_index_vue__);
+/**
+ * Created by haoye on 2017/6/1.
+ */
+
+
+
+
+
+
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_resource__["a" /* default */]);
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_2_element_ui___default.a, { locale: __WEBPACK_IMPORTED_MODULE_3_element_ui_lib_locale_lang_zh_CN___default.a });
+var my = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
+	el: '#my',
+	data: function data() {
+		return {
+			articles: articles,
+			items: items,
+			url: URL
+		};
+	},
+	components: {
+		ArticlesIndex: __WEBPACK_IMPORTED_MODULE_4__components_articles_index_vue___default.a
+	}
+});
+
+/***/ }),
+/* 83 */,
+/* 84 */,
+/* 85 */,
+/* 86 */,
+/* 87 */,
+/* 88 */,
+/* 89 */,
+/* 90 */,
+/* 91 */,
+/* 92 */,
+/* 93 */,
+/* 94 */,
+/* 95 */,
+/* 96 */,
+/* 97 */,
+/* 98 */,
+/* 99 */,
+/* 100 */,
+/* 101 */,
+/* 102 */,
+/* 103 */,
+/* 104 */,
+/* 105 */,
+/* 106 */,
+/* 107 */,
+/* 108 */,
+/* 109 */,
+/* 110 */,
+/* 111 */,
+/* 112 */,
+/* 113 */,
 /* 114 */,
 /* 115 */,
 /* 116 */,
@@ -50356,10 +50320,14 @@ if(false) {
 /* 123 */,
 /* 124 */,
 /* 125 */,
-/* 126 */
+/* 126 */,
+/* 127 */,
+/* 128 */,
+/* 129 */,
+/* 130 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(75);
+module.exports = __webpack_require__(82);
 
 
 /***/ })

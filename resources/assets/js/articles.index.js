@@ -10,7 +10,7 @@ import ArticlesIndex from './components/articles-index.vue';
 Vue.use(Resource);
 Vue.use(ElementUI, {locale})
 var my = new Vue({
-	el: '#my',
+	el: '#container',
 	data: function () {
 		return {
 			articles: articles,

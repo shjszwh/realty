@@ -13,5 +13,7 @@
   "/js/login.js": "/js/login.js",
   "/js/nav.js": "/js/nav.js",
   "/mix.js": "/mix.js",
-  "/css/app.css": "/css/app.css"
+  "/css/app.css": "/css/app.css",
+  "/js/articles.index.js": "/js/articles.index.js",
+  "/js/articles.show.js": "/js/articles.show.js"
 }
