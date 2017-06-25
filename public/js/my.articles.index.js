@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 115);
+/******/ 	return __webpack_require__(__webpack_require__.s = 118);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -49489,8 +49489,7 @@ if (typeof window !== 'undefined' && window.Vue) {
 /* (ignored) */
 
 /***/ }),
-/* 65 */,
-/* 66 */
+/* 65 */
 /***/ (function(module, exports) {
 
 // this module is a runtime utility for cleaner component module output and will
@@ -49547,9 +49546,317 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 67 */,
+/* 66 */
+/***/ (function(module, exports) {
+
+/*
+	MIT License http://www.opensource.org/licenses/mit-license.php
+	Author Tobias Koppers @sokra
+*/
+// css base code, injected by the css-loader
+module.exports = function() {
+	var list = [];
+
+	// return the list of modules as css string
+	list.toString = function toString() {
+		var result = [];
+		for(var i = 0; i < this.length; i++) {
+			var item = this[i];
+			if(item[2]) {
+				result.push("@media " + item[2] + "{" + item[1] + "}");
+			} else {
+				result.push(item[1]);
+			}
+		}
+		return result.join("");
+	};
+
+	// import a list of modules into the list
+	list.i = function(modules, mediaQuery) {
+		if(typeof modules === "string")
+			modules = [[null, modules, ""]];
+		var alreadyImportedModules = {};
+		for(var i = 0; i < this.length; i++) {
+			var id = this[i][0];
+			if(typeof id === "number")
+				alreadyImportedModules[id] = true;
+		}
+		for(i = 0; i < modules.length; i++) {
+			var item = modules[i];
+			// skip already imported module
+			// this implementation is not 100% perfect for weird media query combinations
+			//  when a module is imported multiple times with different media queries.
+			//  I hope this will never occur (Hey this way we have smaller bundles)
+			if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
+				if(mediaQuery && !item[2]) {
+					item[2] = mediaQuery;
+				} else if(mediaQuery) {
+					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
+				}
+				list.push(item);
+			}
+		}
+	};
+	return list;
+};
+
+
+/***/ }),
+/* 67 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/*
+  MIT License http://www.opensource.org/licenses/mit-license.php
+  Author Tobias Koppers @sokra
+  Modified by Evan You @yyx990803
+*/
+
+var hasDocument = typeof document !== 'undefined'
+
+if (typeof DEBUG !== 'undefined' && DEBUG) {
+  if (!hasDocument) {
+    throw new Error(
+    'vue-style-loader cannot be used in a non-browser environment. ' +
+    "Use { target: 'node' } in your Webpack config to indicate a server-rendering environment."
+  ) }
+}
+
+var listToStyles = __webpack_require__(69)
+
+/*
+type StyleObject = {
+  id: number;
+  parts: Array<StyleObjectPart>
+}
+
+type StyleObjectPart = {
+  css: string;
+  media: string;
+  sourceMap: ?string
+}
+*/
+
+var stylesInDom = {/*
+  [id: number]: {
+    id: number,
+    refs: number,
+    parts: Array<(obj?: StyleObjectPart) => void>
+  }
+*/}
+
+var head = hasDocument && (document.head || document.getElementsByTagName('head')[0])
+var singletonElement = null
+var singletonCounter = 0
+var isProduction = false
+var noop = function () {}
+
+// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
+// tags it will allow on a page
+var isOldIE = typeof navigator !== 'undefined' && /msie [6-9]\b/.test(navigator.userAgent.toLowerCase())
+
+module.exports = function (parentId, list, _isProduction) {
+  isProduction = _isProduction
+
+  var styles = listToStyles(parentId, list)
+  addStylesToDom(styles)
+
+  return function update (newList) {
+    var mayRemove = []
+    for (var i = 0; i < styles.length; i++) {
+      var item = styles[i]
+      var domStyle = stylesInDom[item.id]
+      domStyle.refs--
+      mayRemove.push(domStyle)
+    }
+    if (newList) {
+      styles = listToStyles(parentId, newList)
+      addStylesToDom(styles)
+    } else {
+      styles = []
+    }
+    for (var i = 0; i < mayRemove.length; i++) {
+      var domStyle = mayRemove[i]
+      if (domStyle.refs === 0) {
+        for (var j = 0; j < domStyle.parts.length; j++) {
+          domStyle.parts[j]()
+        }
+        delete stylesInDom[domStyle.id]
+      }
+    }
+  }
+}
+
+function addStylesToDom (styles /* Array<StyleObject> */) {
+  for (var i = 0; i < styles.length; i++) {
+    var item = styles[i]
+    var domStyle = stylesInDom[item.id]
+    if (domStyle) {
+      domStyle.refs++
+      for (var j = 0; j < domStyle.parts.length; j++) {
+        domStyle.parts[j](item.parts[j])
+      }
+      for (; j < item.parts.length; j++) {
+        domStyle.parts.push(addStyle(item.parts[j]))
+      }
+      if (domStyle.parts.length > item.parts.length) {
+        domStyle.parts.length = item.parts.length
+      }
+    } else {
+      var parts = []
+      for (var j = 0; j < item.parts.length; j++) {
+        parts.push(addStyle(item.parts[j]))
+      }
+      stylesInDom[item.id] = { id: item.id, refs: 1, parts: parts }
+    }
+  }
+}
+
+function createStyleElement () {
+  var styleElement = document.createElement('style')
+  styleElement.type = 'text/css'
+  head.appendChild(styleElement)
+  return styleElement
+}
+
+function addStyle (obj /* StyleObjectPart */) {
+  var update, remove
+  var styleElement = document.querySelector('style[data-vue-ssr-id~="' + obj.id + '"]')
+
+  if (styleElement) {
+    if (isProduction) {
+      // has SSR styles and in production mode.
+      // simply do nothing.
+      return noop
+    } else {
+      // has SSR styles but in dev mode.
+      // for some reason Chrome can't handle source map in server-rendered
+      // style tags - source maps in <style> only works if the style tag is
+      // created and inserted dynamically. So we remove the server rendered
+      // styles and inject new ones.
+      styleElement.parentNode.removeChild(styleElement)
+    }
+  }
+
+  if (isOldIE) {
+    // use singleton mode for IE9.
+    var styleIndex = singletonCounter++
+    styleElement = singletonElement || (singletonElement = createStyleElement())
+    update = applyToSingletonTag.bind(null, styleElement, styleIndex, false)
+    remove = applyToSingletonTag.bind(null, styleElement, styleIndex, true)
+  } else {
+    // use multi-style-tag mode in all other cases
+    styleElement = createStyleElement()
+    update = applyToTag.bind(null, styleElement)
+    remove = function () {
+      styleElement.parentNode.removeChild(styleElement)
+    }
+  }
+
+  update(obj)
+
+  return function updateStyle (newObj /* StyleObjectPart */) {
+    if (newObj) {
+      if (newObj.css === obj.css &&
+          newObj.media === obj.media &&
+          newObj.sourceMap === obj.sourceMap) {
+        return
+      }
+      update(obj = newObj)
+    } else {
+      remove()
+    }
+  }
+}
+
+var replaceText = (function () {
+  var textStore = []
+
+  return function (index, replacement) {
+    textStore[index] = replacement
+    return textStore.filter(Boolean).join('\n')
+  }
+})()
+
+function applyToSingletonTag (styleElement, index, remove, obj) {
+  var css = remove ? '' : obj.css
+
+  if (styleElement.styleSheet) {
+    styleElement.styleSheet.cssText = replaceText(index, css)
+  } else {
+    var cssNode = document.createTextNode(css)
+    var childNodes = styleElement.childNodes
+    if (childNodes[index]) styleElement.removeChild(childNodes[index])
+    if (childNodes.length) {
+      styleElement.insertBefore(cssNode, childNodes[index])
+    } else {
+      styleElement.appendChild(cssNode)
+    }
+  }
+}
+
+function applyToTag (styleElement, obj) {
+  var css = obj.css
+  var media = obj.media
+  var sourceMap = obj.sourceMap
+
+  if (media) {
+    styleElement.setAttribute('media', media)
+  }
+
+  if (sourceMap) {
+    // https://developer.chrome.com/devtools/docs/javascript-debugging
+    // this makes source maps inside style tags work properly in Chrome
+    css += '\n/*# sourceURL=' + sourceMap.sources[0] + ' */'
+    // http://stackoverflow.com/a/26603875
+    css += '\n/*# sourceMappingURL=data:application/json;base64,' + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + ' */'
+  }
+
+  if (styleElement.styleSheet) {
+    styleElement.styleSheet.cssText = css
+  } else {
+    while (styleElement.firstChild) {
+      styleElement.removeChild(styleElement.firstChild)
+    }
+    styleElement.appendChild(document.createTextNode(css))
+  }
+}
+
+
+/***/ }),
 /* 68 */,
-/* 69 */,
+/* 69 */
+/***/ (function(module, exports) {
+
+/**
+ * Translates the list format produced by css-loader into something
+ * easier to manipulate.
+ */
+module.exports = function listToStyles (parentId, list) {
+  var styles = []
+  var newStyles = {}
+  for (var i = 0; i < list.length; i++) {
+    var item = list[i]
+    var id = item[0]
+    var css = item[1]
+    var media = item[2]
+    var sourceMap = item[3]
+    var part = {
+      id: parentId + ':' + i,
+      css: css,
+      media: media,
+      sourceMap: sourceMap
+    }
+    if (!newStyles[id]) {
+      styles.push(newStyles[id] = { id: id, parts: [part] })
+    } else {
+      newStyles[id].parts.push(part)
+    }
+  }
+  return styles
+}
+
+
+/***/ }),
 /* 70 */,
 /* 71 */,
 /* 72 */,
@@ -49567,7 +49874,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_element_ui___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_element_ui__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_element_ui_lib_locale_lang_zh_CN__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_element_ui_lib_locale_lang_zh_CN___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_element_ui_lib_locale_lang_zh_CN__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_articles_index_vue__ = __webpack_require__(140);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_articles_index_vue__ = __webpack_require__(97);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_articles_index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_articles_index_vue__);
 /**
  * Created by haoye on 2017/6/1.
@@ -49603,70 +49910,60 @@ var my = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
 /* 83 */,
 /* 84 */,
 /* 85 */,
-/* 86 */,
-/* 87 */,
-/* 88 */,
-/* 89 */,
-/* 90 */,
-/* 91 */,
-/* 92 */,
-/* 93 */,
-/* 94 */,
-/* 95 */,
-/* 96 */,
-/* 97 */,
-/* 98 */,
-/* 99 */,
-/* 100 */,
-/* 101 */,
-/* 102 */,
-/* 103 */,
-/* 104 */,
-/* 105 */,
-/* 106 */,
-/* 107 */,
-/* 108 */,
-/* 109 */,
-/* 110 */,
-/* 111 */,
-/* 112 */,
-/* 113 */,
-/* 114 */,
-/* 115 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(75);
-
-
-/***/ }),
-/* 116 */,
-/* 117 */,
-/* 118 */,
-/* 119 */,
-/* 120 */,
-/* 121 */,
-/* 122 */,
-/* 123 */,
-/* 124 */,
-/* 125 */,
-/* 126 */,
-/* 127 */,
-/* 128 */,
-/* 129 */,
-/* 130 */,
-/* 131 */,
-/* 132 */,
-/* 133 */,
-/* 134 */,
-/* 135 */,
-/* 136 */,
-/* 137 */,
-/* 138 */,
-/* 139 */
+/* 86 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -49704,11 +50001,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	name: 'ArticlesIndex',
 	data: function data() {
 		return {
+			url: URL,
+			count: 122,
 			articles: [{
 				date: '2016-05-02',
 				name: '王小虎',
 				title: '上海市普陀区金沙江路 1518 弄',
-				tags: ['文章(200)', '文章2', '文章3'],
+				tags: [{ number: 12, name: '文章' }, { number: 12, name: '文章2' }, { number: 12, name: '目录' }],
 				dirs: ['中文', '目录1', '随笔'],
 				dirUrl: '/my/my-dirs/1',
 				editUrl: 'my/my-articles/1/edit',
@@ -49718,7 +50017,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				date: '2016-05-04',
 				name: '王小虎',
 				title: '上海市普陀区金沙江路 1517 弄',
-				tags: ['文章', '文章2', '文章3'],
+				tags: [{ number: 12, name: '文章' }, { number: 12, name: '文章2' }, { number: 12, name: '目录' }],
 				dirs: ['中文', '目录1', '随笔'],
 				dirUrl: '/my/my-dirs/1',
 				editUrl: 'my/my-articles/1/edit',
@@ -49728,7 +50027,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				date: '2016-05-01',
 				name: '王小虎',
 				title: '上海市普陀区金沙江路 1519 弄',
-				tags: ['目录', '目录2', '目录3'],
+				tags: [{ number: 12, name: '文章' }, { number: 12, name: '文章2' }, { number: 12, name: '目录' }],
 				dirs: ['中文', '目录1', '随笔'],
 				dirUrl: '/my/my-dirs/1',
 				editUrl: 'my/my-articles/1/edit',
@@ -49738,7 +50037,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				date: '2016-05-03',
 				name: '王小虎',
 				title: '上海市普陀区金沙江路 1516 弄',
-				tags: ['目录', '目录2', '目录3'],
+				tags: [{ number: 12, name: '文章' }, { number: 12, name: '文章2' }, { number: 12, name: '目录' }],
 				dirs: ['中文', '目录1', '随笔'],
 				dirUrl: '/my/my-dirs/1',
 				editUrl: 'my/my-articles/1/edit',
@@ -49753,21 +50052,41 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			return row.address;
 		},
 		filterTag: function filterTag(value, row) {
-			return row.tag === value;
+			var rs = false;
+			for (var x in row.tags) {
+				if (row.tags[x]['name'] == value) {
+					rs = true;
+				}
+			}
+			return rs;
 		}
 	}
 
 });
 
 /***/ }),
-/* 140 */
+/* 87 */,
+/* 88 */,
+/* 89 */,
+/* 90 */,
+/* 91 */,
+/* 92 */,
+/* 93 */,
+/* 94 */,
+/* 95 */,
+/* 96 */,
+/* 97 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Component = __webpack_require__(66)(
+
+/* styles */
+__webpack_require__(130)
+
+var Component = __webpack_require__(65)(
   /* script */
-  __webpack_require__(139),
+  __webpack_require__(86),
   /* template */
-  __webpack_require__(141),
+  __webpack_require__(102),
   /* scopeId */
   null,
   /* cssModules */
@@ -49794,11 +50113,63 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 141 */
+/* 98 */,
+/* 99 */,
+/* 100 */,
+/* 101 */,
+/* 102 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return (_vm.articles.length) ? _c('el-table', {
+  return _c('el-row', [(_vm.articles.length) ? _c('el-col', {
+    attrs: {
+      "span": 24
+    }
+  }, [_c('el-card', {
+    staticClass: "box-card"
+  }, [_c('div', {
+    staticClass: "clearfix el-row",
+    slot: "header"
+  }, [_c('el-breadcrumb', {
+    attrs: {
+      "separator": "/"
+    }
+  }, [_c('el-breadcrumb-item', [_c('a', {
+    attrs: {
+      "href": _vm.url.my.profile.show
+    }
+  }, [_vm._v("个人中心")])]), _vm._v(" "), _c('el-breadcrumb-item', [_c('a', {
+    attrs: {
+      "href": _vm.url.my.articles.index
+    }
+  }, [_vm._v("我的文章")])])], 1)], 1), _vm._v(" "), _c('div', {
+    staticClass: "text item el-row",
+    staticStyle: {
+      "margin-bottom": "10px"
+    }
+  }, [_c('el-row', [_c('el-col', {
+    attrs: {
+      "span": 12
+    }
+  }, [_c('span', {
+    staticStyle: {
+      "line-height": "36px"
+    }
+  }, [_vm._v("您一共贡献了" + _vm._s(_vm.count) + "篇文章")])]), _vm._v(" "), _c('el-col', {
+    staticStyle: {
+      "text-align": "right"
+    },
+    attrs: {
+      "span": 12
+    }
+  }, [_c('a', {
+    staticClass: "el-button el-button--primary",
+    attrs: {
+      "href": _vm.url.my.articles.create
+    }
+  }, [_vm._v("再写一篇")])])], 1)], 1), _vm._v(" "), _c('div', {
+    staticClass: "text item"
+  }, [_c('el-table', {
     staticStyle: {
       "width": "100%"
     },
@@ -49808,7 +50179,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('el-table-column', {
     attrs: {
       "prop": "date",
-      "label": "日期"
+      "label": "创作日期"
     }
   }), _vm._v(" "), _c('el-table-column', {
     attrs: {
@@ -49831,11 +50202,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       fn: function(scope) {
         return _vm._l((scope.row.tags), function(tag) {
           return _c('el-tag', {
+            key: tag,
+            staticClass: "item",
             attrs: {
-              "type": tag === '家' ? 'primary' : 'success',
+              "type": tag === '文章' ? 'primary' : 'success',
               "close-transition": ""
             }
-          }, [_vm._v(_vm._s(tag) + "\n\t\t\t")])
+          }, [_vm._v(_vm._s(tag.name) + "(" + _vm._s(tag.number) + ")\n\t\t\t\t\t\t\t")])
         })
       }
     }])
@@ -49879,7 +50252,46 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         }, [_vm._v("删除")])]
       }
     }])
-  })], 1) : _vm._e()
+  })], 1)], 1)])], 1) : _vm._e(), _vm._v(" "), (!_vm.articles.length) ? _c('el-col', {
+    attrs: {
+      "span": 24
+    }
+  }, [_c('el-card', {
+    staticClass: "box-card"
+  }, [_c('div', {
+    staticClass: "clearfix el-row",
+    slot: "header"
+  }, [_c('el-col', {
+    attrs: {
+      "span": 12
+    }
+  }, [_c('span', {
+    staticStyle: {
+      "line-height": "36px"
+    }
+  }, [_vm._v("您还未撰写文章")])]), _vm._v(" "), _c('el-col', {
+    staticStyle: {
+      "text-align": "right"
+    },
+    attrs: {
+      "span": 12
+    }
+  }, [_c('a', {
+    staticClass: "el-button el-button--primary",
+    attrs: {
+      "href": _vm.url.my.articles.create
+    }
+  }, [_vm._v("马上写一篇")])])], 1), _vm._v(" "), _c('div', {
+    staticClass: "text item"
+  }, [_c('el-alert', {
+    attrs: {
+      "title": "您还未撰写文章",
+      "type": "warning",
+      "description": "电脑没找到你写的文章！",
+      "closable": false,
+      "show-icon": ""
+    }
+  })], 1)])], 1) : _vm._e()], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -49887,6 +50299,71 @@ if (false) {
   if (module.hot.data) {
      require("vue-hot-reload-api").rerender("data-v-00b82a4e", module.exports)
   }
+}
+
+/***/ }),
+/* 103 */,
+/* 104 */,
+/* 105 */,
+/* 106 */,
+/* 107 */,
+/* 108 */,
+/* 109 */,
+/* 110 */,
+/* 111 */,
+/* 112 */,
+/* 113 */,
+/* 114 */,
+/* 115 */,
+/* 116 */,
+/* 117 */,
+/* 118 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(75);
+
+
+/***/ }),
+/* 119 */,
+/* 120 */,
+/* 121 */,
+/* 122 */,
+/* 123 */,
+/* 124 */,
+/* 125 */,
+/* 126 */,
+/* 127 */,
+/* 128 */,
+/* 129 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(66)();
+exports.push([module.i, "\n.el-tag.item {\n\tmargin: 2px;\n}\n", ""]);
+
+/***/ }),
+/* 130 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(129);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(67)("c5e3aa3c", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-00b82a4e\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./articles-index.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-00b82a4e\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./articles-index.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
 }
 
 /***/ })

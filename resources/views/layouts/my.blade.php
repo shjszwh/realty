@@ -57,7 +57,6 @@
 	var minHeight = 400;
 	function setMinHeight() {
 		minHeight = window.innerHeight;
-		console.log(minHeight);
 		document.getElementById('container').style.minHeight = (minHeight - 230) + 'px';
 	}
 	document.body.onload = setMinHeight;

@@ -63,12 +63,12 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 125);
+/******/ 	return __webpack_require__(__webpack_require__.s = 128);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 125:
+/***/ 128:
 /***/ (function(module, exports, __webpack_require__) {
 
 (function webpackMissingModule() { throw new Error("Cannot find module \"/web/realty/resources/assets/js/my/my.articles.create.js\""); }());

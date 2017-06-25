@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 112);
+/******/ 	return __webpack_require__(__webpack_require__.s = 115);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -47911,62 +47911,6 @@ module.exports = g;
 /* 65 */
 /***/ (function(module, exports) {
 
-/*
-	MIT License http://www.opensource.org/licenses/mit-license.php
-	Author Tobias Koppers @sokra
-*/
-// css base code, injected by the css-loader
-module.exports = function() {
-	var list = [];
-
-	// return the list of modules as css string
-	list.toString = function toString() {
-		var result = [];
-		for(var i = 0; i < this.length; i++) {
-			var item = this[i];
-			if(item[2]) {
-				result.push("@media " + item[2] + "{" + item[1] + "}");
-			} else {
-				result.push(item[1]);
-			}
-		}
-		return result.join("");
-	};
-
-	// import a list of modules into the list
-	list.i = function(modules, mediaQuery) {
-		if(typeof modules === "string")
-			modules = [[null, modules, ""]];
-		var alreadyImportedModules = {};
-		for(var i = 0; i < this.length; i++) {
-			var id = this[i][0];
-			if(typeof id === "number")
-				alreadyImportedModules[id] = true;
-		}
-		for(i = 0; i < modules.length; i++) {
-			var item = modules[i];
-			// skip already imported module
-			// this implementation is not 100% perfect for weird media query combinations
-			//  when a module is imported multiple times with different media queries.
-			//  I hope this will never occur (Hey this way we have smaller bundles)
-			if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
-				if(mediaQuery && !item[2]) {
-					item[2] = mediaQuery;
-				} else if(mediaQuery) {
-					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
-				}
-				list.push(item);
-			}
-		}
-	};
-	return list;
-};
-
-
-/***/ }),
-/* 66 */
-/***/ (function(module, exports) {
-
 // this module is a runtime utility for cleaner component module output and will
 // be included in the final webpack user bundle
 
@@ -48018,6 +47962,62 @@ module.exports = function normalizeComponent (
     options: options
   }
 }
+
+
+/***/ }),
+/* 66 */
+/***/ (function(module, exports) {
+
+/*
+	MIT License http://www.opensource.org/licenses/mit-license.php
+	Author Tobias Koppers @sokra
+*/
+// css base code, injected by the css-loader
+module.exports = function() {
+	var list = [];
+
+	// return the list of modules as css string
+	list.toString = function toString() {
+		var result = [];
+		for(var i = 0; i < this.length; i++) {
+			var item = this[i];
+			if(item[2]) {
+				result.push("@media " + item[2] + "{" + item[1] + "}");
+			} else {
+				result.push(item[1]);
+			}
+		}
+		return result.join("");
+	};
+
+	// import a list of modules into the list
+	list.i = function(modules, mediaQuery) {
+		if(typeof modules === "string")
+			modules = [[null, modules, ""]];
+		var alreadyImportedModules = {};
+		for(var i = 0; i < this.length; i++) {
+			var id = this[i][0];
+			if(typeof id === "number")
+				alreadyImportedModules[id] = true;
+		}
+		for(i = 0; i < modules.length; i++) {
+			var item = modules[i];
+			// skip already imported module
+			// this implementation is not 100% perfect for weird media query combinations
+			//  when a module is imported multiple times with different media queries.
+			//  I hope this will never occur (Hey this way we have smaller bundles)
+			if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
+				if(mediaQuery && !item[2]) {
+					item[2] = mediaQuery;
+				} else if(mediaQuery) {
+					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
+				}
+				list.push(item);
+			}
+		}
+	};
+	return list;
+};
 
 
 /***/ }),
@@ -58550,9 +58550,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_element_ui___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_element_ui__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_element_ui_lib_locale_lang_zh_CN__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_element_ui_lib_locale_lang_zh_CN___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_element_ui_lib_locale_lang_zh_CN__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_realty_carousel_vue__ = __webpack_require__(97);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_realty_carousel_vue__ = __webpack_require__(99);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_realty_carousel_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_realty_carousel_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_realty_home_card_vue__ = __webpack_require__(98);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_realty_home_card_vue__ = __webpack_require__(100);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_realty_home_card_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__components_realty_home_card_vue__);
 /**
  * Created by haoye on 2017/6/1.
@@ -58586,7 +58586,8 @@ var container = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
 /* 84 */,
 /* 85 */,
 /* 86 */,
-/* 87 */
+/* 87 */,
+/* 88 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -58623,7 +58624,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 88 */
+/* 89 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -58675,38 +58676,39 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 89 */,
 /* 90 */,
 /* 91 */,
 /* 92 */,
 /* 93 */,
-/* 94 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(65)();
-exports.push([module.i, "\n.realty-carousel{\n    width:100%;\n}\n", ""]);
-
-/***/ }),
+/* 94 */,
 /* 95 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(65)();
+exports = module.exports = __webpack_require__(66)();
+exports.push([module.i, "\n.realty-carousel{\n    width:100%;\n}\n", ""]);
+
+/***/ }),
+/* 96 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(66)();
 exports.push([module.i, "\n.row-bg{\n    padding:40px 0;\n    background: #ECEFF1;\n}\n.image{\n    width:100%;\n}\n", ""]);
 
 /***/ }),
-/* 96 */,
-/* 97 */
+/* 97 */,
+/* 98 */,
+/* 99 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
 /* styles */
-__webpack_require__(108)
+__webpack_require__(111)
 
-var Component = __webpack_require__(66)(
+var Component = __webpack_require__(65)(
   /* script */
-  __webpack_require__(87),
+  __webpack_require__(88),
   /* template */
-  __webpack_require__(103),
+  __webpack_require__(106),
   /* scopeId */
   null,
   /* cssModules */
@@ -58733,18 +58735,18 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 98 */
+/* 100 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
 /* styles */
-__webpack_require__(109)
+__webpack_require__(112)
 
-var Component = __webpack_require__(66)(
+var Component = __webpack_require__(65)(
   /* script */
-  __webpack_require__(88),
+  __webpack_require__(89),
   /* template */
-  __webpack_require__(104),
+  __webpack_require__(107),
   /* scopeId */
   null,
   /* cssModules */
@@ -58771,11 +58773,12 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 99 */,
-/* 100 */,
 /* 101 */,
 /* 102 */,
-/* 103 */
+/* 103 */,
+/* 104 */,
+/* 105 */,
+/* 106 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -58803,7 +58806,7 @@ if (false) {
 }
 
 /***/ }),
-/* 104 */
+/* 107 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -58850,16 +58853,16 @@ if (false) {
 }
 
 /***/ }),
-/* 105 */,
-/* 106 */,
-/* 107 */,
-/* 108 */
+/* 108 */,
+/* 109 */,
+/* 110 */,
+/* 111 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(94);
+var content = __webpack_require__(95);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -58879,13 +58882,13 @@ if(false) {
 }
 
 /***/ }),
-/* 109 */
+/* 112 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(95);
+var content = __webpack_require__(96);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -58905,9 +58908,9 @@ if(false) {
 }
 
 /***/ }),
-/* 110 */,
-/* 111 */,
-/* 112 */
+/* 113 */,
+/* 114 */,
+/* 115 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(72);

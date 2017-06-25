@@ -38,9 +38,6 @@ scsses.forEach(function(filename) {
 scripts.forEach(function(filename) {
 	mix.js('resources/assets/js/' + filename, 'public/js');
 });
-scripts.forEach(function(filename) {
-	mix.js('resources/assets/js/my/' + filename, 'public/js/my');
-});
 
 mix.copy('resources/assets/images', 'public/images', false);
 
@@ -54,6 +51,7 @@ mix.browserSync({
 	    'resources/assets/js/my/*',
         'resources/assets/js/components/*',
         'resources/views/*',
-        'resources/views/*/*'
+        'resources/views/*/*',
+	    'public/mix-manifest.js'
     ]
 })
