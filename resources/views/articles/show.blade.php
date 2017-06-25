@@ -29,6 +29,7 @@
 				        close-transition>@{{tag.title}}
 				</el-tag>
 			</div>
+			<div class="text item">
 			<el-tag
 					class="input-new-tag primary"
 					:key="tag"
@@ -50,6 +51,11 @@
 			>
 			</el-input>
 			<el-button v-else class="button-new-tag success" size="small" @click="showInput">+ 新增标签</el-button>
+
+			</div>
+			<div class="text item">
+				@{!! article !!}
+			</div>
 		</el-card>
 	</el-row>
 
@@ -60,6 +66,7 @@
 		var article = {!! $article !!};
 		var tags ={!! $tags !!};
 		var author = {!! $author !!};
+		var content = {!! $content !!}
 		console.log(article, tags, author);
 	</script>
 	<script src="{{  mix('js/articles.show.js')  }}"></script>

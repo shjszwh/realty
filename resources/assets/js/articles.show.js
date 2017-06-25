@@ -15,6 +15,7 @@ var my = new Vue({
 		return {
 			article: article,
 			tags: tags,
+			content:content,
 			author: author,
 			url: URL,
 			inputVisible: false,

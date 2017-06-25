@@ -50268,6 +50268,7 @@ var my = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
 		return _ref = {
 			article: article,
 			tags: tags,
+			content: content,
 			author: author,
 			url: URL,
 			inputVisible: false,
