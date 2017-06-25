@@ -10,5 +10,10 @@ class Dir extends Model
 	{
 		$this->morphTo(Tag::class, 'tagsTable');
 	}
+
+	public function contents()
+	{
+		$this->hasMany(DirContent::class);
+	}
 	//
 }

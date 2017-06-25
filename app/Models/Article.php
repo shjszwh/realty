@@ -11,6 +11,11 @@ class Article extends Model
 		$this->belongsTo(User::class);
 	}
 
+	public function content()
+	{
+		$this->hasOne(Article::class);
+	}
+
 	public function tags()
 	{
 		$this->morphTo(Tag::class, 'tagsTable');
