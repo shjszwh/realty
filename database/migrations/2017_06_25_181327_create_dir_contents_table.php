@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTagsTable extends Migration
+class CreateDirContentsTable extends Migration
 {
 	/**
 	 * Run the migrations.
@@ -13,21 +13,21 @@ class CreateTagsTable extends Migration
 	 */
 	public function up()
 	{
-		Schema::create('tags', function (Blueprint $table) {
+		Schema::create('dir_contents', function (Blueprint $table) {
 			$table->increments('id');
-			$table->integer('user_id')->unsigned();;
+			$table->integer('dir_id')->unsigned();;
 			$table->string('item_type');
 			$table->integer('item_id');
-			$table->string('title');
 			$table->timestamps();
 			$table->softDeletes();
 
-			$table->index('user_id');
+			$table->index('dir_id');
 			$table->index('item_type');
 			$table->index('item_id');
 
-			$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+			$table->foreign('dir_id')->references('id')->on('dirs')->onDelete('cascade');
 		});
+		//
 	}
 
 	/**
@@ -37,7 +37,6 @@ class CreateTagsTable extends Migration
 	 */
 	public function down()
 	{
-		Schema::dropIfExists('tags');
-		//
+		Schema::dropIfExists('dir_contents');
 	}
 }

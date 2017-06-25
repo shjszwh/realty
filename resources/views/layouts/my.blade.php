@@ -39,7 +39,7 @@
 					</el-menu-item>
 					<el-menu-item index="3">
 						<i class="el-icon-star-on"></i>
-						<a class="el-button el-button--text" :href="url.my.dirs.index">我的收藏</a>
+						<a class="el-button el-button--text" :href="url.my.dirs.index">我的目录</a>
 					</el-menu-item>
 				</el-menu>
 			</div>

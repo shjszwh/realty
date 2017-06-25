@@ -12,9 +12,9 @@ class DirsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+    	return view('my.dirs.index');
     }
 
     /**
