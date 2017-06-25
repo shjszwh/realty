@@ -16,14 +16,14 @@ class CreateDirContentsTable extends Migration
 		Schema::create('dir_contents', function (Blueprint $table) {
 			$table->increments('id');
 			$table->integer('dir_id')->unsigned();;
-			$table->string('item_type');
-			$table->integer('item_id');
+			$table->string('dir_content_able_type');
+			$table->integer('dir_content_able_id');
 			$table->timestamps();
 			$table->softDeletes();
 
 			$table->index('dir_id');
-			$table->index('item_type');
-			$table->index('item_id');
+			$table->index('dir_content_able_type');
+			$table->index('dir_content_able_id');
 
 			$table->foreign('dir_id')->references('id')->on('dirs')->onDelete('cascade');
 		});

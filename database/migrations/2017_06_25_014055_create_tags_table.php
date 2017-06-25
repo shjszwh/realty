@@ -15,16 +15,16 @@ class CreateTagsTable extends Migration
 	{
 		Schema::create('tags', function (Blueprint $table) {
 			$table->increments('id');
-			$table->integer('user_id')->unsigned();;
-			$table->string('item_type');
-			$table->integer('item_id');
+			$table->integer('user_id')->unsigned();
+			$table->string('tag_able_type');
+			$table->integer('tag_able_id');
 			$table->string('title');
 			$table->timestamps();
 			$table->softDeletes();
 
 			$table->index('user_id');
-			$table->index('item_type');
-			$table->index('item_id');
+			$table->index('tag_able_type');
+			$table->index('tag_able_id');
 
 			$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 		});

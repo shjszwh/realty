@@ -125,6 +125,12 @@
 		},
 		methods: {
 			onSubmit: function () {
+				this.form._token = USER.csrf_token,
+					this.$http.post(this.url.my.articles.store, this.form).then(function (a, b, c) {
+						console.log(a, b, c);
+					}, function (a, b, c) {
+						console.log(a, b, c);
+					});
 				console.log(this.form);
 			},
 			handleClose(tag) {

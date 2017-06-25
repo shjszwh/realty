@@ -2,9 +2,15 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
+/**
+ * Class User
+ * @package App\Models
+ * @property Collection $articles
+ */
 class User extends Authenticatable
 {
 	use Notifiable;
@@ -30,6 +36,9 @@ class User extends Authenticatable
 		'remember_token',
 	];
 
+	/**
+	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
+	 */
 	public function articles()
 	{
 		return $this->hasMany(Article::class);

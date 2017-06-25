@@ -8,7 +8,7 @@ class Dir extends Model
 {
 	public function tags()
 	{
-		$this->morphTo(Tag::class, 'tagsTable');
+		$this->morphTo(Tag::class, 'item');
 	}
 
 	public function contents()

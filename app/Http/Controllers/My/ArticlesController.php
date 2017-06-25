@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers\My;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Article;
+use App\Models\DirContent;
+use App\Models\Tag;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
 
 class ArticlesController extends Controller
 {
@@ -12,9 +17,12 @@ class ArticlesController extends Controller
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
-	public function index()
+	public function index(Request $request)
 	{
-		return view('my.articles.index');
+		$user = \Auth::user();
+		$articles = $user->articles()->paginate(10)->toArray();
+
+		return view('my.articles.index', ['articles' => $articles]);
 		//
 	}
 
@@ -36,7 +44,32 @@ class ArticlesController extends Controller
 	 */
 	public function store(Request $request)
 	{
-		//
+		$all = $request->all();
+		$status = false;
+		DB::transaction(function ($data) use ($all,&$status) {
+			$user = \Auth::user();
+			$article = Article::create(['user_id' => $user->id, 'title' => $all['title']]);
+			$tags = [];
+			foreach ($all['tags'] as $tag) {
+				$tags[] = new Tag([
+					'user_id' => $user->id,
+					'title' => $tag,
+				]);
+			}
+			$dirs = [];
+			foreach ($all['dirs'] as $dir) {
+				$dirs[] = new DirContent(['dir_id' => $dir]);
+			}
+			$article->dirs()->saveMany($dirs);
+			$article->tags()->saveMany($tags);
+			$article->content()->create(['content' => $all['content']]);
+			$status = true;
+		});
+		if($status){
+			return response(['message' => '提交成功', 'status' => 'success'], Response::HTTP_OK);
+		}else{
+			return response(['message' => '保存失败', 'status' => 'success'], Response::HTTP_INTERNAL_SERVER_ERROR);
+		}
 	}
 
 	/**

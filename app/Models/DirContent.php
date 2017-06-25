@@ -6,7 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class DirContent extends Model
 {
-	public function dirTable()
+	protected $table = 'dir_contents';
+	protected $fillable = [
+		'dir_id'
+	];
+
+	public function dir_content_able()
 	{
 		$this->morphTo();
 	}
