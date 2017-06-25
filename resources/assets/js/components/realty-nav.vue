@@ -59,7 +59,7 @@
 </script>
 
 <style>
-    .el-menu--horizontal .el-menu-item.pull-right:{
-    float: right;
+    .el-menu--horizontal .el-menu-item.pull-right{
+    float: right !important;
 }
 </style>

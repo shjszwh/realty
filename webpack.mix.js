@@ -18,6 +18,8 @@ var scsses = [
 var scripts = [
     'app.js',
     'home.js',
+    'login.js',
+    'register.js'
 ];
 
 scsses.forEach(function(filename) {
