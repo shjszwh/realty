@@ -14,9 +14,10 @@ const { mix } = require('laravel-mix');
 var scsses = [
     'app.scss',
 ];
-
+mix.js('resources/assets/js/app.js', 'public/js/app.js').extract([
+    'vue','jquery','element-ui','element-ui/lib/locale/lang/zh-CN'
+]);
 var scripts = [
-    'app.js',
     'home.js',
     'login.js',
     'register.js',
