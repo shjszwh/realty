@@ -1,0 +1,1 @@
+webpackJsonp([14],{14:function(e,n,t){e.exports=t("XwI/")},"XwI/":function(e,n,t){"use strict";Object.defineProperty(n,"__esModule",{value:!0});var a=t("GZEo"),o=t.n(a),u=t("z6x2"),c=t.n(u),r=t("1tKf"),s=t.n(r);o.a.use(c.a,{locale:s.a});new o.a({el:"#myNav",data:function(){return{url:URL}},components:{}})}},[14]);

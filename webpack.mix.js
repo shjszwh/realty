@@ -44,6 +44,10 @@ scripts.forEach(function(filename) {
 
 mix.copy('resources/assets/images', 'public/images', false);
 
+if (mix.config.inProduction) {
+    mix.version();
+}
+
 mix.browserSync({
     proxy: 'http://localhost/',
     files: [

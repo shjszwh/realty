@@ -1,0 +1,1 @@
+webpackJsonp([15],{"4lzL":function(n,e,t){"use strict";Object.defineProperty(e,"__esModule",{value:!0});var o=t("GZEo"),a=t.n(o),c=t("bXvV"),i=(t.n(c),t("z6x2")),l=t.n(i),r=t("1tKf"),s=t.n(r);a.a.use(l.a,{locale:s.a});new a.a({el:"#container",data:function(){return{labelPosition:"right"}},components:{}})},5:function(n,e,t){n.exports=t("4lzL")}},[5]);
