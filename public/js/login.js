@@ -1,1 +1,0 @@
-webpackJsonp([15],{127:function(n,e,t){n.exports=t(42)},42:function(n,e,t){"use strict";Object.defineProperty(e,"__esModule",{value:!0});var o=t(0),a=t.n(o),c=t(18),i=(t.n(c),t(5)),r=t.n(i),s=t(4),u=t.n(s);a.a.use(r.a,{locale:u.a});new a.a({el:"#container",data:function(){return{labelPosition:"right"}},components:{}})}},[127]);

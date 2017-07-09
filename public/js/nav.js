@@ -1,1 +1,0 @@
-webpackJsonp([14],{136:function(e,n,a){e.exports=a(51)},51:function(e,n,a){"use strict";Object.defineProperty(n,"__esModule",{value:!0});var t=a(0),o=a.n(t),u=a(5),c=a.n(u),r=a(4),s=a.n(r);o.a.use(c.a,{locale:s.a});new o.a({el:"#myNav",data:function(){return{url:URL}},components:{}})}},[136]);
