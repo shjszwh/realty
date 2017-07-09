@@ -57,7 +57,7 @@
 		</el-col>
 
 		<el-col v-if="!items.length" :span="24">
-			<el-card class="box-card">
+			<el-card class="box-card" v-if="!isPublic">
 				<div slot="header" class="clearfix el-row">
 					<el-col :span="12">
 						<span style="line-height: 36px;">您还未撰写文章</span>
@@ -71,6 +71,23 @@
 							title="您还未撰写文章"
 							type="warning"
 							description="电脑没找到你写的文章！"
+							:closable="false"
+							show-icon>
+					</el-alert>
+				</div>
+			</el-card>
+
+			<el-card class="box-card" v-if="isPublic">
+				<div slot="header" class="clearfix el-row">
+					<el-col :span="12">
+						<span style="line-height: 36px;">什么都没找到</span>
+					</el-col>
+				</div>
+				<div class="text item">
+					<el-alert
+							title="什么都没找到"
+							type="warning"
+							description="我们网站还没有一篇像样的文章！"
 							:closable="false"
 							show-icon>
 					</el-alert>
