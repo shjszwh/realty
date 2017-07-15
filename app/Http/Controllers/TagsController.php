@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Tag;
 use Illuminate\Http\Request;
 
 class TagsController extends Controller
@@ -11,8 +12,11 @@ class TagsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        if($request->ajax()){
+            $tags = Tag::getTags();
+        }
         return view('tags');
         //
     }

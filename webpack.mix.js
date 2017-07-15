@@ -58,7 +58,6 @@ mix.browserSync({
 	    'resources/assets/js/my/*',
         'resources/assets/js/components/*',
         'resources/views/*',
-        'resources/views/*/*',
-	    'public/mix-manifest.js'
+        'resources/views/*/*'
     ]
 })

@@ -11,6 +11,7 @@ var my = new Vue({
 	el: '#my',
 	data: function () {
 		return {
+			tags:items,
 			url:URL
 		}
 	},

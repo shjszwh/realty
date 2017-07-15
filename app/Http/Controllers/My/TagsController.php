@@ -15,7 +15,9 @@ class TagsController extends Controller
      */
     public function index()
     {
-        //
+        $user = \Auth::user();
+        $tags = $user->getCreatedTags();
+        return view('my.tags.index', ['tags' => json_encode($tags)]);
     }
 
     /**
@@ -31,7 +33,7 @@ class TagsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -42,7 +44,7 @@ class TagsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Tag  $tag
+     * @param  \App\Models\Tag $tag
      * @return \Illuminate\Http\Response
      */
     public function show(Tag $tag)
@@ -53,7 +55,7 @@ class TagsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Tag  $tag
+     * @param  \App\Models\Tag $tag
      * @return \Illuminate\Http\Response
      */
     public function edit(Tag $tag)
@@ -64,8 +66,8 @@ class TagsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Tag  $tag
+     * @param  \Illuminate\Http\Request $request
+     * @param  \App\Models\Tag $tag
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Tag $tag)
@@ -76,7 +78,7 @@ class TagsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Tag  $tag
+     * @param  \App\Models\Tag $tag
      * @return \Illuminate\Http\Response
      */
     public function destroy(Tag $tag)
